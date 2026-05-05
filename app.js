@@ -149,11 +149,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sidebar Tabs Interaction
     const navItems = document.querySelectorAll('.nav-item');
+    const views = document.querySelectorAll('.view-section');
+
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
+            const targetId = item.getAttribute('data-target');
+            if (!targetId) return;
+
+            // Update Active Tab
             navItems.forEach(nav => nav.classList.remove('active'));
             item.classList.add('active');
+
+            // Update Active View
+            views.forEach(view => {
+                view.style.display = 'none';
+                view.classList.remove('active-view');
+            });
+            const targetView = document.getElementById(targetId);
+            if (targetView) {
+                targetView.style.display = targetId === 'view-dashboard' || targetId === 'view-logs' ? 'flex' : 'block';
+                targetView.classList.add('active-view');
+            }
         });
     });
 });

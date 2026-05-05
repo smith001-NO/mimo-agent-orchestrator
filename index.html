@@ -20,11 +20,11 @@
             </div>
             
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item active"><i class="fa-solid fa-table-cells-large"></i> 总览 (Dashboard)</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-microchip"></i> 模型配置 (MiMo Models)</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-network-wired"></i> Agent 编排 (Orchestration)</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-terminal"></i> 执行日志 (Logs)</a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i> 设置 (Settings)</a>
+                <a href="#" class="nav-item active" data-target="view-dashboard"><i class="fa-solid fa-table-cells-large"></i> 总览 (Dashboard)</a>
+                <a href="#" class="nav-item" data-target="view-models"><i class="fa-solid fa-microchip"></i> 模型配置 (MiMo Models)</a>
+                <a href="#" class="nav-item" data-target="view-orchestration"><i class="fa-solid fa-network-wired"></i> Agent 编排 (Orchestration)</a>
+                <a href="#" class="nav-item" data-target="view-logs"><i class="fa-solid fa-terminal"></i> 执行日志 (Logs)</a>
+                <a href="#" class="nav-item" data-target="view-settings"><i class="fa-solid fa-gear"></i> 设置 (Settings)</a>
             </nav>
             
             <div class="sidebar-bottom">
@@ -55,8 +55,12 @@
                 </div>
             </header>
 
-            <!-- Dashboard Grid -->
-            <div class="dashboard-grid">
+            <!-- Views Container -->
+            <div class="views-container" style="flex-grow: 1; display: flex; flex-direction: column;">
+                
+                <!-- View: Dashboard -->
+                <div id="view-dashboard" class="view-section active-view" style="flex-grow: 1; display: flex; flex-direction: column;">
+                    <div class="dashboard-grid">
                 
                 <!-- Topology Map -->
                 <section class="topology-section glass-panel">
@@ -142,6 +146,53 @@
                 </div>
                 
             </div>
+            </div> <!-- End Dashboard View -->
+
+            <!-- View: Models -->
+            <div id="view-models" class="view-section" style="display: none; padding: 2rem;">
+                <h2 style="margin-bottom: 1rem;">MiMo 模型集群状态</h2>
+                <div class="glass-panel" style="padding: 2rem; color: var(--text-secondary);">
+                    <p><i class="fa-solid fa-check-circle" style="color: #4AF626;"></i> MiMo-Pro (v1.2) - Online (Latency: 45ms)</p>
+                    <p style="margin-top: 1rem;"><i class="fa-solid fa-check-circle" style="color: #4AF626;"></i> MiMo-Coder (v2.0) - Online (Latency: 62ms)</p>
+                    <p style="margin-top: 1rem;"><i class="fa-solid fa-check-circle" style="color: #4AF626;"></i> MiMo-Vision - Online (Latency: 110ms)</p>
+                </div>
+            </div>
+
+            <!-- View: Orchestration -->
+            <div id="view-orchestration" class="view-section" style="display: none; padding: 2rem;">
+                <h2 style="margin-bottom: 1rem;">工作流编排画布</h2>
+                <div class="glass-panel" style="padding: 2rem; color: var(--text-secondary); text-align: center;">
+                    <i class="fa-solid fa-hammer" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <p>拖拽式 Agent 编排功能正在开发中 (Coming Soon)</p>
+                </div>
+            </div>
+
+            <!-- View: Logs -->
+            <div id="view-logs" class="view-section" style="display: none; padding: 2rem; height: 100%; display: flex; flex-direction: column;">
+                <h2 style="margin-bottom: 1rem;">系统全局日志</h2>
+                <div class="glass-panel" style="flex-grow: 1; padding: 1rem; font-family: var(--font-code); background: #0A0B10; overflow-y: auto; color: #A9B1D6;">
+                    <p>[SYSTEM] WebSocket connection established.</p>
+                    <p>[AUTH] User smith001-NO authenticated successfully.</p>
+                    <p>[GATEWAY] OpenClaw routing tables updated.</p>
+                </div>
+            </div>
+
+            <!-- View: Settings -->
+            <div id="view-settings" class="view-section" style="display: none; padding: 2rem;">
+                <h2 style="margin-bottom: 1rem;">系统设置</h2>
+                <div class="glass-panel" style="padding: 2rem;">
+                    <label style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <span>OpenClaw Gateway URL:</span>
+                        <input type="text" value="ws://localhost:8080/v1" style="padding: 0.5rem; background: #0A0B10; border: 1px solid var(--panel-border); color: white; border-radius: 4px; width: 300px;">
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 1rem;">
+                        <span>深色模式:</span>
+                        <input type="checkbox" checked>
+                    </label>
+                </div>
+            </div>
+
+            </div> <!-- End Views Container -->
         </main>
     </div>
 
