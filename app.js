@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 flowLines[3].classList.remove('active');
                 
                 isRunning = false;
-                startBtn.innerHTML = '<i class="ph ph-play"></i> 重新运行';
+                startBtn.innerHTML = '<i class="fa-solid fa-play"></i> 重新运行';
                 startBtn.disabled = false;
             }
         }
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isRunning) return;
         isRunning = true;
         startBtn.disabled = true;
-        startBtn.innerHTML = '<i class="ph ph-spinner-gap ph-spin"></i> 运行中...';
+        startBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 运行中...';
         
         terminalOutput.innerHTML = '';
         addLog('NebulaBot Orchestrator Engine v2.0 initialized.', 'system');
@@ -144,6 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Run workflow sequence
         workflowSteps.forEach(step => {
             setTimeout(step.action, step.time);
+        });
+    });
+
+    // Sidebar Tabs Interaction
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            navItems.forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
         });
     });
 });

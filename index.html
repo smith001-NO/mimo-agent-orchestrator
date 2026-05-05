@@ -6,29 +6,25 @@
     <title>NebulaBot: MiMo Agent Orchestrator</title>
     <!-- Google Fonts: Outfit for a modern, techy look -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Font Awesome for lightweight icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background Effects -->
-    <div class="bg-glow orange-glow"></div>
-    <div class="bg-glow cyan-glow"></div>
-    
     <div class="app-container">
         <!-- Sidebar -->
         <aside class="sidebar glass-panel">
             <div class="logo-area">
-                <i class="ph-fill ph-planet"></i>
+                <i class="fa-solid fa-planet-ringed"></i>
                 <span>NebulaBot</span>
             </div>
             
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item active"><i class="ph ph-squares-four"></i> 总览 (Dashboard)</a>
-                <a href="#" class="nav-item"><i class="ph ph-cpu"></i> 模型配置 (MiMo Models)</a>
-                <a href="#" class="nav-item"><i class="ph ph-network"></i> Agent 编排 (Orchestration)</a>
-                <a href="#" class="nav-item"><i class="ph ph-terminal-window"></i> 执行日志 (Logs)</a>
-                <a href="#" class="nav-item"><i class="ph ph-gear"></i> 设置 (Settings)</a>
+                <a href="#" class="nav-item active"><i class="fa-solid fa-table-cells-large"></i> 总览 (Dashboard)</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-microchip"></i> 模型配置 (MiMo Models)</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-network-wired"></i> Agent 编排 (Orchestration)</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-terminal"></i> 执行日志 (Logs)</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i> 设置 (Settings)</a>
             </nav>
             
             <div class="sidebar-bottom">
@@ -50,7 +46,7 @@
                 
                 <div class="top-actions">
                     <button class="action-btn primary-btn" id="start-simulation">
-                        <i class="ph ph-play"></i> 启动推理流
+                        <i class="fa-solid fa-play"></i> 启动推理流
                     </button>
                     <div class="user-profile">
                         <img src="https://avatars.githubusercontent.com/u/1?v=4" alt="User" class="avatar" id="user-avatar">
@@ -65,7 +61,7 @@
                 <!-- Topology Map -->
                 <section class="topology-section glass-panel">
                     <div class="section-header">
-                        <h2><i class="ph ph-graph"></i> Agent 协作拓扑图</h2>
+                        <h2><i class="fa-solid fa-diagram-project"></i> Agent 协作拓扑图</h2>
                         <span class="badge">MiMo Series</span>
                     </div>
                     <div class="topology-container" id="topology-map">
@@ -80,25 +76,25 @@
 
                         <!-- Agent Nodes -->
                         <div class="agent-node node-master" style="top: 50%; left: 20%; transform: translate(-50%, -50%);">
-                            <div class="node-icon"><i class="ph ph-brain"></i></div>
+                            <div class="node-icon"><i class="fa-solid fa-brain"></i></div>
                             <div class="node-label">Planner (MiMo-Pro)</div>
                             <div class="node-status" id="status-planner">Idle</div>
                         </div>
 
                         <div class="agent-node node-worker" style="top: 25%; left: 50%; transform: translate(-50%, -50%);">
-                            <div class="node-icon"><i class="ph ph-code"></i></div>
+                            <div class="node-icon"><i class="fa-solid fa-code"></i></div>
                             <div class="node-label">Coder (MiMo-Coder)</div>
                             <div class="node-status" id="status-coder">Idle</div>
                         </div>
 
                         <div class="agent-node node-worker" style="top: 75%; left: 50%; transform: translate(-50%, -50%);">
-                            <div class="node-icon"><i class="ph ph-bug"></i></div>
+                            <div class="node-icon"><i class="fa-solid fa-bug"></i></div>
                             <div class="node-label">Reviewer (MiMo-Vision)</div>
                             <div class="node-status" id="status-reviewer">Idle</div>
                         </div>
 
                         <div class="agent-node node-executor" style="top: 50%; left: 80%; transform: translate(-50%, -50%);">
-                            <div class="node-icon"><i class="ph ph-terminal"></i></div>
+                            <div class="node-icon"><i class="fa-solid fa-terminal"></i></div>
                             <div class="node-label">Executor (OpenClaw)</div>
                             <div class="node-status" id="status-executor">Idle</div>
                         </div>
@@ -114,14 +110,14 @@
                     <!-- Stats Cards -->
                     <div class="stats-container">
                         <div class="stat-card glass-panel">
-                            <div class="stat-icon orange"><i class="ph ph-lightning"></i></div>
+                            <div class="stat-icon orange"><i class="fa-solid fa-bolt"></i></div>
                             <div class="stat-info">
                                 <h3>Total Tokens</h3>
                                 <p class="stat-value" id="token-count">2,450K</p>
                             </div>
                         </div>
                         <div class="stat-card glass-panel">
-                            <div class="stat-icon cyan"><i class="ph ph-clock"></i></div>
+                            <div class="stat-icon cyan"><i class="fa-solid fa-clock"></i></div>
                             <div class="stat-info">
                                 <h3>Avg Latency</h3>
                                 <p class="stat-value" id="latency-val">124 ms</p>

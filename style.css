@@ -47,6 +47,7 @@ body {
     /* Removed filter: blur() for performance optimization */
     z-index: -1;
     opacity: 0.5;
+    pointer-events: none;
 }
 
 .orange-glow {
@@ -61,13 +62,11 @@ body {
     background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
 }
 
-/* Glassmorphism Panel (Optimized for Performance) */
+/* Flat Design Panel (Optimized for VM) */
 .glass-panel {
-    background: var(--bg-panel);
-    /* Removed backdrop-filter for performance */
+    background: #1A1D24;
     border: 1px solid var(--panel-border);
     border-radius: var(--border-radius-lg);
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* App Layout */
@@ -146,14 +145,12 @@ body {
     height: 8px;
     background-color: var(--text-terminal);
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--text-terminal);
     animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 246, 38, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(74, 246, 38, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 246, 38, 0); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
 }
 
 /* Main Content */
@@ -202,12 +199,10 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: var(--transition);
-    box-shadow: 0 4px 15px var(--accent-orange-glow);
 }
 
 .primary-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 105, 0, 0.6);
 }
 
 .user-profile {
@@ -284,18 +279,18 @@ body {
     stroke: rgba(255, 255, 255, 0.1);
     stroke-width: 2;
     stroke-dasharray: 5 5;
-    animation: dash 30s linear infinite;
 }
 
 .flow-line.active {
     stroke: var(--accent-cyan);
     stroke-width: 3;
     /* Removed filter: drop-shadow for performance */
-    animation: dash 10s linear infinite;
+    animation: blink 1.5s infinite;
 }
 
-@keyframes dash {
-    to { stroke-dashoffset: -1000; }
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
 }
 
 .agent-node {
@@ -319,21 +314,18 @@ body {
     align-items: center;
     font-size: 1.75rem;
     color: var(--text-primary);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     transition: var(--transition);
 }
 
 .agent-node.active .node-icon {
     border-color: var(--accent-cyan);
     color: var(--accent-cyan);
-    box-shadow: 0 0 20px var(--accent-cyan-glow);
     transform: scale(1.1);
 }
 
 .agent-node.master.active .node-icon {
     border-color: var(--accent-orange);
     color: var(--accent-orange);
-    box-shadow: 0 0 20px var(--accent-orange-glow);
 }
 
 .node-label {
