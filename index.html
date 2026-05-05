@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NebulaBot: MiMo Agent Orchestrator</title>
+    <!-- Google Fonts: Outfit for a modern, techy look -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-glow orange-glow"></div>
+    <div class="bg-glow cyan-glow"></div>
+    
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel">
+            <div class="logo-area">
+                <i class="ph-fill ph-planet"></i>
+                <span>NebulaBot</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active"><i class="ph ph-squares-four"></i> 总览 (Dashboard)</a>
+                <a href="#" class="nav-item"><i class="ph ph-cpu"></i> 模型配置 (MiMo Models)</a>
+                <a href="#" class="nav-item"><i class="ph ph-network"></i> Agent 编排 (Orchestration)</a>
+                <a href="#" class="nav-item"><i class="ph ph-terminal-window"></i> 执行日志 (Logs)</a>
+                <a href="#" class="nav-item"><i class="ph ph-gear"></i> 设置 (Settings)</a>
+            </nav>
+            
+            <div class="sidebar-bottom">
+                <div class="status-indicator">
+                    <span class="pulse-dot"></span>
+                    <span>OpenClaw Gateway: 运行中</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-nav glass-panel">
+                <div class="page-title">
+                    <h1>MiMo Agent Orchestrator</h1>
+                    <p class="subtitle">Multi-Agent Collaboration & Context Reasoning</p>
+                </div>
+                
+                <div class="top-actions">
+                    <button class="action-btn primary-btn" id="start-simulation">
+                        <i class="ph ph-play"></i> 启动推理流
+                    </button>
+                    <div class="user-profile">
+                        <img src="https://avatars.githubusercontent.com/u/1?v=4" alt="User" class="avatar" id="user-avatar">
+                        <span>smith001-NO</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                
+                <!-- Topology Map -->
+                <section class="topology-section glass-panel">
+                    <div class="section-header">
+                        <h2><i class="ph ph-graph"></i> Agent 协作拓扑图</h2>
+                        <span class="badge">MiMo Series</span>
+                    </div>
+                    <div class="topology-container" id="topology-map">
+                        <!-- SVG paths for connections -->
+                        <svg class="connection-lines" width="100%" height="100%">
+                            <!-- Connections will be drawn by JS or CSS -->
+                            <line x1="20%" y1="50%" x2="50%" y2="25%" class="flow-line" />
+                            <line x1="20%" y1="50%" x2="50%" y2="75%" class="flow-line" />
+                            <line x1="50%" y1="25%" x2="80%" y2="50%" class="flow-line" />
+                            <line x1="50%" y1="75%" x2="80%" y2="50%" class="flow-line" />
+                        </svg>
+
+                        <!-- Agent Nodes -->
+                        <div class="agent-node node-master" style="top: 50%; left: 20%; transform: translate(-50%, -50%);">
+                            <div class="node-icon"><i class="ph ph-brain"></i></div>
+                            <div class="node-label">Planner (MiMo-Pro)</div>
+                            <div class="node-status" id="status-planner">Idle</div>
+                        </div>
+
+                        <div class="agent-node node-worker" style="top: 25%; left: 50%; transform: translate(-50%, -50%);">
+                            <div class="node-icon"><i class="ph ph-code"></i></div>
+                            <div class="node-label">Coder (MiMo-Coder)</div>
+                            <div class="node-status" id="status-coder">Idle</div>
+                        </div>
+
+                        <div class="agent-node node-worker" style="top: 75%; left: 50%; transform: translate(-50%, -50%);">
+                            <div class="node-icon"><i class="ph ph-bug"></i></div>
+                            <div class="node-label">Reviewer (MiMo-Vision)</div>
+                            <div class="node-status" id="status-reviewer">Idle</div>
+                        </div>
+
+                        <div class="agent-node node-executor" style="top: 50%; left: 80%; transform: translate(-50%, -50%);">
+                            <div class="node-icon"><i class="ph ph-terminal"></i></div>
+                            <div class="node-label">Executor (OpenClaw)</div>
+                            <div class="node-status" id="status-executor">Idle</div>
+                        </div>
+                        
+                        <!-- Floating Data Packets for animation -->
+                        <div class="data-packet" id="packet-1"></div>
+                        <div class="data-packet" id="packet-2"></div>
+                    </div>
+                </section>
+
+                <!-- Right Column: Stats & Logs -->
+                <div class="right-column">
+                    <!-- Stats Cards -->
+                    <div class="stats-container">
+                        <div class="stat-card glass-panel">
+                            <div class="stat-icon orange"><i class="ph ph-lightning"></i></div>
+                            <div class="stat-info">
+                                <h3>Total Tokens</h3>
+                                <p class="stat-value" id="token-count">2,450K</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-panel">
+                            <div class="stat-icon cyan"><i class="ph ph-clock"></i></div>
+                            <div class="stat-info">
+                                <h3>Avg Latency</h3>
+                                <p class="stat-value" id="latency-val">124 ms</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terminal Panel -->
+                    <section class="terminal-section glass-panel">
+                        <div class="terminal-header">
+                            <div class="window-controls">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="terminal-title">Agent Execution Log</span>
+                        </div>
+                        <div class="terminal-body" id="terminal-output">
+                            <div class="log-line system">NebulaBot Orchestrator Engine v2.0 initialized.</div>
+                            <div class="log-line system">Connecting to OpenClaw Gateway... [OK]</div>
+                            <div class="log-line system">MiMo Models loaded successfully. Ready for inference.</div>
+                        </div>
+                    </section>
+                </div>
+                
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
