@@ -44,7 +44,7 @@ body {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    filter: blur(120px);
+    /* Removed filter: blur() for performance optimization */
     z-index: -1;
     opacity: 0.5;
 }
@@ -52,23 +52,22 @@ body {
 .orange-glow {
     top: -100px;
     left: -100px;
-    background: radial-gradient(circle, var(--accent-orange-glow) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 105, 0, 0.15) 0%, transparent 70%);
 }
 
 .cyan-glow {
     bottom: -100px;
     right: -100px;
-    background: radial-gradient(circle, var(--accent-cyan-glow) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
 }
 
-/* Glassmorphism Panel */
+/* Glassmorphism Panel (Optimized for Performance) */
 .glass-panel {
     background: var(--bg-panel);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    /* Removed backdrop-filter for performance */
     border: 1px solid var(--panel-border);
     border-radius: var(--border-radius-lg);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* App Layout */
@@ -291,7 +290,7 @@ body {
 .flow-line.active {
     stroke: var(--accent-cyan);
     stroke-width: 3;
-    filter: drop-shadow(0 0 5px var(--accent-cyan-glow));
+    /* Removed filter: drop-shadow for performance */
     animation: dash 10s linear infinite;
 }
 
